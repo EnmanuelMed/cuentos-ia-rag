@@ -15,36 +15,32 @@ st.set_page_config(page_title="Cuentos Bot", page_icon="📚")
 st.markdown("""
     <style>
     .main {
-        background-color: #f5f7f9;
+        background-color: #f0f2f6;
     }
     .stChatMessage {
-        border-radius: 15px;
-        padding: 10px;
-        margin-bottom: 10px;
+        border-radius: 20px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     }
     .stChatInputContainer {
-        padding-bottom: 20px;
+        padding-bottom: 30px;
     }
     h1 {
-        color: #2e4053;
+        color: #1E3A8A;
         text-align: center;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
     }
-    .bot-bubble {
-        background-color: #ffffff;
-        border: 1px solid #ddd;
-        border-radius: 15px;
-        padding: 10px;
-        color: #333;
-        margin-bottom: 10px;
+    .stButton>button {
+        border-radius: 20px;
+        transition: all 0.3s ease;
     }
-    .user-bubble {
-        background-color: #d1e7dd;
-        border-radius: 15px;
-        padding: 10px;
-        color: #0f5132;
-        margin-bottom: 10px;
-        text-align: right;
+    .stButton>button:hover {
+        transform: scale(1.05);
+        background-color: #3B82F6;
+        color: white;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -71,8 +67,41 @@ def get_qa_chain():
     )
 
 def main():
+    # Sidebar interactiva
+    with st.sidebar:
+        st.title("⚙️ Configuración")
+        
+        # Menú desplegable novedoso
+        personalidad = st.selectbox(
+            "Elige la personalidad del bot:",
+            ["Narrador Clásico", "Sabio Anciano", "Hada Curiosa", "Crítico Literario"],
+            help="Cambia la forma en que el bot responde a tus preguntas"
+        )
+        
+        st.divider()
+        
+        # Botones de acción
+        if st.button("🗑️ Limpiar Historial", use_container_width=True):
+            st.session_state.messages = []
+            st.rerun()
+            
+        if st.button("✨ Sugerir Pregunta", use_container_width=True):
+            st.info("Prueba con: '¿Cuál es la moraleja de la historia?'")
+            
+        st.divider()
+        
+        # Sección 'Acerca de'
+        with st.expander("📖 Acerca de este Bot"):
+            st.write("""
+            Este es un bot inteligente diseñado para interactuar con colecciones de cuentos en formato PDF.
+            Utiliza **RAG (Retrieval Augmented Generation)** para dar respuestas precisas basadas en los documentos cargados.
+            """)
+
     st.title("📚 Cuentos Inteligentes")
     st.markdown("<p style='text-align: center;'>Haz preguntas sobre tus cuentos favoritos</p>", unsafe_allow_html=True)
+    
+    # Mostrar la personalidad seleccionada
+    st.caption(f"Personalidad actual: **{personalidad}**")
 
     # Inicializar historial de chat
     if "messages" not in st.session_state:
