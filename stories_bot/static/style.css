@@ -1,0 +1,63 @@
+/* General Page Style */
+.stApp {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Title Styling */
+h1 {
+    color: #2c3e50;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Chat Bubbles Customization */
+.stChatMessage {
+    border-radius: 20px !important;
+    padding: 15px !important;
+    margin: 10px 0 !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05) !important;
+}
+
+/* User Message Style */
+[data-testid="stChatMessage"]:nth-child(even) {
+    background-color: #d1e7dd !important;
+    border: 1px solid #a3cfbb !important;
+}
+
+/* Assistant Message Style */
+[data-testid="stChatMessage"]:nth-child(odd) {
+    background-color: #ffffff !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+/* Input Area */
+.stChatInputContainer {
+    padding-bottom: 40px !important;
+}
+
+/* Sidebar Buttons */
+.stButton > button {
+    width: 100%;
+    border-radius: 12px !important;
+    background-color: #4a90e2 !important;
+    color: white !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+}
+
+.stButton > button:hover {
+    background-color: #357abd !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+}
+
+/* Custom Footer/Caption */
+.stCaption {
+    text-align: center;
+    font-style: italic;
+    color: #7f8c8d !important;
+}
